@@ -11,6 +11,9 @@ public class ChessBoard extends World
     boolean onColoredSquare = false;
     int tileLength = 100;
     GreenfootImage boardImage = new GreenfootImage("images/board.jpg");
+    int[] row = {50,150,250,350,450,550,650,750};
+    int[] column = {50,150,250,350,450,550,650,750};
+    int[][] chessBoard = {column,row};
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -20,14 +23,6 @@ public class ChessBoard extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800,800,1);
         setBackground(boardImage);
-        for(int y = 1; y<=8; y++)
-        {
-            
-            for(int x=0; x<8; x++)
-            {
-                
-            }
-        }
     }
     public void act()
     {

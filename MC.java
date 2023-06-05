@@ -11,6 +11,7 @@ public class MC extends Actor
     GreenfootImage characterImage = new GreenfootImage("112769.png");
     
     int mouseX, mouseY;
+    int frame = 1;
     /**
      * Act - do whatever the MC wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -33,7 +34,7 @@ public class MC extends Actor
         }
         else if(Greenfoot.isKeyDown("s")) 
         {
-            setLocation(getX(), getY()+10);
+            super.setLocation(getX(), getY()+10);
             
         }
         else if(Greenfoot.isKeyDown("a"))
@@ -46,7 +47,7 @@ public class MC extends Actor
             setLocation(getX()+10, getY());
         }
     }
-    public void mouseLocation()
+    public void mouseLocation() // makes character face the mouse location.
     {
         if(Greenfoot.getMouseInfo() != null)
         {
@@ -55,6 +56,18 @@ public class MC extends Actor
             turnTowards(mouseX,mouseY);
         
             
+        }
+    }
+    public void animate()
+    {
+        if(frame == 1)
+        {
+            frame++;
+            
+        }
+        else if(frame ==2)
+        {
+            frame--;
         }
     }
 }

@@ -9,11 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class InstructionWorld extends World
 {
     Label title = new Label("Rules:",50);
-    Label rule1 = new Label("- Movement:\n Pawns can move 1 tile up.\n Bishop can move diagonally, up to 8 tiles.\nKing can move 1 tile in any direction \nQueen can move in any direction, up to 8 tiles.\nRook can move vertically and horizontally.",25);
-    Label rule2 = new Label("- When a piece is in vision/targetting of the King, \nyou must move the King.",25);
-    Label rule3 = new Label("- Checkmate:\n When your King cannot legally move in any squares\nwithout the vision of enemy pieces, you lose.\n When you checkmate the opponent King, you win.", 25);
+    Label rule1 = new Label("- Movement:WASD, Up, Left, Down, Right respectively.",25);
+    Label rule2 = new Label("Press space to shoot the enemies in front of you.",25);
+    Label rule3 = new Label("-Survive without dying and kill all your foes.", 25);
     int textSpacing = 75;
-    Label proceed = new Label("Press <  space  > to continue to game",25);
+    Label proceed = new Label("Press <  the key X  > to start playing the game.",25);
     /**
      * Constructor for objects of class InstructionWorld.
      * 
@@ -23,10 +23,10 @@ public class InstructionWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         
         super(600, 400, 1);
-        GreenfootImage bg = new GreenfootImage("instructionScreenBg.jpg");
-        setBackground(bg);
-        bg.setTransparency(10);
-        bg.scale(bg.getWidth()*25/100, bg.getHeight()*25/100);
+        //GreenfootImage bg = new GreenfootImage("instructionScreenBg.jpg");
+        //setBackground(bg);
+        //bg.setTransparency(10);
+        //bg.scale(bg.getWidth()*25/100, bg.getHeight()*25/100);
         Color outline = Color.WHITE;
         outline = outline.darker();
         Color firstRule = Color.GREEN;
@@ -49,9 +49,9 @@ public class InstructionWorld extends World
     }
     public void act()
     {
-        if(Greenfoot.isKeyDown("space"))
+        if(Greenfoot.isKeyDown("x"))
         {
-            ChessBoard gameworld = new ChessBoard();
+            GameWorld gameworld = new GameWorld();
             Greenfoot.setWorld(gameworld);
         }
     }

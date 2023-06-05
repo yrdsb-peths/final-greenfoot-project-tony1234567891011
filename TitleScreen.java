@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TitleScreen extends World
 {
-    Label titleLabel = new Label("Chess",50);
+    Label titleLabel = new Label("Shooters game",50);
     
     
     /**
@@ -19,7 +19,7 @@ public class TitleScreen extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
-        GreenfootImage bg = new GreenfootImage("bg.jpg");
+        GreenfootImage bg = new GreenfootImage("images/bathroom-tile.jpg");
         bg.scale(bg.getWidth()*15/100, bg.getHeight()*15/100);
         setBackground(bg);
         

@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MC extends Actor
 {
-    GreenfootImage characterImage = new GreenfootImage("112769.png");
+    GreenfootImage characterImage = new GreenfootImage("survivor.png");
     
     int mouseX, mouseY;
     int frame = 1;

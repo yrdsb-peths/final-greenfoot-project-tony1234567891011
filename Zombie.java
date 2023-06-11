@@ -10,8 +10,11 @@ public class Zombie extends Actor
 {
     GreenfootImage animationRight[] = new GreenfootImage[8];
     String defaultFacing = "right";
+    int zombieX;
+    int zombieY;
     int animationCounter = 0;
-    int speed = 20;
+    int animationSpeed = 20;
+    int mvtSpd = 5;
     GreenfootImage animationLeft[] = new GreenfootImage[8];
     /**
      * Act - do whatever the enemy wants to do. This method is called whenever
@@ -34,11 +37,14 @@ public class Zombie extends Actor
     }
     public void act()
     {
-        if(animationCounter%speed==0)
+        if(animationCounter%animationSpeed==0)
         {
             animate();
         }
         animationCounter++;
+        zombieX = getX();
+        zombieY = getY();
+        chaseSurvivor();
     }
     int index = 0;
     public void animate()
@@ -53,5 +59,45 @@ public class Zombie extends Actor
             setImage(animationLeft[index]);
             index = (index+1)%(animationRight.length);
         }
+    }
+    public void chaseSurvivor()
+    {
+        
+        //turnTowards(MC.survivorLocationX, MC.survivorLocationY);
+        /*
+        if(MC.survivorLocationX > zombieX)
+        {
+            defaultFacing = "right";
+        }
+        else if(MC.survivorLocationX < zombieX)
+        {
+            defaultFacing = "left";
+        }
+        else if(MC.survivorLocationX == zombieX)
+        {
+            defaultFacing = "right";
+        }
+        */
+       
+       if(MC.survivorLocationX < zombieX)
+       {
+           defaultFacing = "left";
+           setLocation(zombieX-mvtSpd, zombieY);
+       }
+       else if(MC.survivorLocationX > zombieX)
+       {
+           defaultFacing = "right";
+           setLocation(zombieX+mvtSpd, zombieY);
+       }
+       if(MC.survivorLocationY > zombieY)
+       {
+           setLocation(zombieX, zombieY+mvtSpd);
+       }
+       else if(MC.survivorLocationY < zombieY)
+       {
+           setLocation(zombieX, zombieY-mvtSpd);
+       }
+       
+       
     }
 }

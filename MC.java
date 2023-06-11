@@ -11,6 +11,7 @@ public class MC extends Actor
     GreenfootImage characterImage = new GreenfootImage("images/survivor.png");
     
     int mouseX, mouseY;
+    public static int survivorLocationX, survivorLocationY;
     int frame = 1;
     /**
      * Act - do whatever the MC wants to do. This method is called whenever
@@ -21,13 +22,15 @@ public class MC extends Actor
         characterImage.scale(characterImage.getWidth()*25/100, characterImage.getHeight()*25/100);
         
     }
+    
     public void act()
     {
         // Add your action code here.
         setImage(characterImage);
         
         mouseLocation();
-        
+        survivorLocationX = getX();
+        survivorLocationY = getY();
         if(Greenfoot.isKeyDown("w"))
         {
             setLocation(getX(), getY()-10);
@@ -57,6 +60,16 @@ public class MC extends Actor
         
             
         }
+    }
+    public int getSurvivorX()
+    {
+        survivorLocationX = getX();
+        return survivorLocationX;
+    }
+    public int getSurvivorY()
+    {
+        survivorLocationX = getY();
+        return survivorLocationY;
     }
     public void animate()
     {

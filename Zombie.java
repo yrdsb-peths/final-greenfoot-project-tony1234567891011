@@ -10,11 +10,12 @@ public class Zombie extends Actor
 {
     GreenfootImage animationRight[] = new GreenfootImage[8];
     String defaultFacing = "right";
-    int zombieX;
-    int zombieY;
+    public static int zombieX;
+    public static int zombieY;
     int animationCounter = 0;
     int animationSpeed = 20;
     int mvtSpd = 5;
+    //200 ms is the default time for the first spawn, will go down.
     GreenfootImage animationLeft[] = new GreenfootImage[8];
     /**
      * Act - do whatever the enemy wants to do. This method is called whenever
@@ -35,6 +36,7 @@ public class Zombie extends Actor
         }
         setImage(animationRight[0]);
     }
+    
     public void act()
     {
         if(animationCounter%animationSpeed==0)
@@ -45,8 +47,19 @@ public class Zombie extends Actor
         zombieX = getX();
         zombieY = getY();
         chaseSurvivor();
+    
     }
     int index = 0;
+    public int getXCoord()
+    {
+        zombieX = getX();
+        return zombieX;
+    }
+    public int getYCoord()
+    {
+        zombieY = getY();
+        return zombieY;
+    }
     public void animate()
     {
         if(defaultFacing.equals("right"))
@@ -60,6 +73,19 @@ public class Zombie extends Actor
             index = (index+1)%(animationRight.length);
         }
     }
+    /*
+    public void spawnZombie(Zombie z,int x, int y, SimpleTimer spawnTimer, int spawnInMillis)
+    {
+        if(spawnTimer.millisElapsed()<spawnInMillis)
+        {
+            return;
+        }
+        spawnTimer.mark();
+        GameWorld world = (GameWorld) getWorld();
+        world.addObject(z,x,y);
+        spawnInMillis =-1;
+    }
+    */
     public void chaseSurvivor()
     {
       if(MC.survivorLocationX < zombieX && MC.survivorLocationY > zombieY)

@@ -62,42 +62,44 @@ public class Zombie extends Actor
     }
     public void chaseSurvivor()
     {
-        
-        //turnTowards(MC.survivorLocationX, MC.survivorLocationY);
-        /*
-        if(MC.survivorLocationX > zombieX)
+      if(MC.survivorLocationX < zombieX && MC.survivorLocationY > zombieY)
+        {
+            defaultFacing = "left";
+            setLocation(zombieX-mvtSpd, zombieY+mvtSpd);
+        }
+        else if(MC.survivorLocationX < zombieX && MC.survivorLocationY < zombieY)
+        {
+            defaultFacing = "left";
+            setLocation(zombieX-mvtSpd, zombieY-mvtSpd);
+        }
+        else if(MC.survivorLocationX > zombieX && MC.survivorLocationY > zombieY)
         {
             defaultFacing = "right";
+            setLocation(zombieX+mvtSpd, zombieY+mvtSpd);
+        }
+        else if(MC.survivorLocationX > zombieX && MC.survivorLocationY < zombieY)
+        {
+            defaultFacing = "right";
+            setLocation(zombieX+mvtSpd, zombieY-mvtSpd);
         }
         else if(MC.survivorLocationX < zombieX)
         {
             defaultFacing = "left";
+            setLocation(zombieX-mvtSpd, zombieY);
         }
-        else if(MC.survivorLocationX == zombieX)
+        else if(MC.survivorLocationX > zombieX)
         {
             defaultFacing = "right";
+            setLocation(zombieX+mvtSpd, zombieY);
         }
-        */
-       
-       if(MC.survivorLocationX < zombieX)
-       {
-           defaultFacing = "left";
-           setLocation(zombieX-mvtSpd, zombieY);
-       }
-       else if(MC.survivorLocationX > zombieX)
-       {
-           defaultFacing = "right";
-           setLocation(zombieX+mvtSpd, zombieY);
-       }
-       if(MC.survivorLocationY > zombieY)
-       {
-           setLocation(zombieX, zombieY+mvtSpd);
-       }
-       else if(MC.survivorLocationY < zombieY)
-       {
-           setLocation(zombieX, zombieY-mvtSpd);
-       }
-       
+        else if(MC.survivorLocationY > zombieY)
+        {
+            setLocation(zombieX, zombieY+mvtSpd);
+        }
+        else if(MC.survivorLocationY < zombieY)
+        {
+            setLocation(zombieX, zombieY-mvtSpd);
+        }
        
     }
 }

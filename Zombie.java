@@ -47,7 +47,12 @@ public class Zombie extends Actor
         zombieX = getX();
         zombieY = getY();
         chaseSurvivor();
-    
+        if(isTouching(MC.class))
+        {
+            removeTouching(MC.class); 
+            EndGameScreen endgame = new EndGameScreen();
+            Greenfoot.setWorld(endgame);
+        }
     }
     int index = 0;
     public int getXCoord()

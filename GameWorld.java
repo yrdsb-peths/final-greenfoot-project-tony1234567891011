@@ -12,6 +12,8 @@ public class GameWorld extends World
     int counter = 0;
     int spawnCounter = 250;
     SimpleTimer spawnTimer = new SimpleTimer();
+    SimpleTimer survivedTime = new SimpleTimer();
+    public static int timeSurvived = 0;
     int timePerSpawn = 2000;
     /**
      * Constructor for objects of class MyWorld.
@@ -32,11 +34,11 @@ public class GameWorld extends World
         addObject(character, getWidth()/2, getHeight()/2);
         addObject(enemy, 0,300);
         spawnTimer.mark();
+        survivedTime.mark();
     }
     
     public void act()
     {
-        
         Zombie spawn = new Zombie();
         int randomSpawnX = Greenfoot.getRandomNumber(1200);
         int randomSpawnY = Greenfoot.getRandomNumber(600);
@@ -48,21 +50,7 @@ public class GameWorld extends World
             randomSpawnY = Greenfoot.getRandomNumber(600);
         }
         spawnZombie(spawn, randomSpawnX, randomSpawnY);
-        /*
-        if(spawn.isTouching(MC.class))
-        {
-            removeTouching(this);
-            removeObject();
-        }
-        */
-
-        /*
-        if(counter%10 == 0 && spawnCounter != 1 && spawnCounter >= 50)
-        // makes sure zombies do not spawn too quickly, however spawn faster and faster.
-        {s
-            spawnCounter = spawnCounter - 1;
-        }
-        */
+        timeSurvived = survivedTime.millisElapsed();
         
     }
     public void spawnZombie(Zombie z, int x, int y)
@@ -74,11 +62,8 @@ public class GameWorld extends World
         else
         {
             spawnTimer.mark();
+            timePerSpawn= timePerSpawn-1;
             addObject(z,x,y);
         }
-    }
-    public void endGame()
-    {
-        
     }
 }

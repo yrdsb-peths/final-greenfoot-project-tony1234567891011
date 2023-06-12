@@ -13,6 +13,7 @@ public class EndGameScreen extends World
     int timeSeconds = (GameWorld.timeSurvived%60000)/1000;
     int timeMilliseconds = (GameWorld.timeSurvived%60000)%1000;
     Label timeSurvived = new Label("Time Survived: "+ timeMins + " minutes " + timeSeconds + " seconds " + timeMilliseconds + " milliseconds.", 25);
+    Label highestScore = new Label("Highest score: " + Zombie.highestScore,25);
     /**
      * Constructor for objects of class endGameScreen.
      * 

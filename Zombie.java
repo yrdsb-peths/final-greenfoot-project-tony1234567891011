@@ -10,6 +10,9 @@ public class Zombie extends Actor
 {
     GreenfootImage animationRight[] = new GreenfootImage[8];
     String defaultFacing = "right";
+    public int score[] = new int[10];
+    int retryCount = 0;
+    public static int highestScore = 0;
     public static int zombieX;
     public static int zombieY;
     int animationCounter = 0;
@@ -49,7 +52,17 @@ public class Zombie extends Actor
         chaseSurvivor();
         if(isTouching(MC.class))
         {
-            removeTouching(MC.class); 
+            removeTouching(MC.class);
+            score[retryCount] = GameWorld.timeSurvived;
+            retryCount++;
+            for(int i = 0; i<score.length; i++)
+            {
+                highestScore = score[0];
+                if(highestScore<score[i])
+                {
+                    highestScore = score[i];
+                }
+            }
             EndGameScreen endgame = new EndGameScreen();
             Greenfoot.setWorld(endgame);
         }

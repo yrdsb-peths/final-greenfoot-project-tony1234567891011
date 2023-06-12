@@ -9,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class GameWorld extends World
 {
     //GreenfootImage bg = new GreenfootImage("map.jpg");
-    int counter = 0;
-    int spawnCounter = 250;
+    int killCounter = 0;
+    int spawnCount = 20;
     SimpleTimer spawnTimer = new SimpleTimer();
     SimpleTimer survivedTime = new SimpleTimer();
     public static int timeSurvived = 0;

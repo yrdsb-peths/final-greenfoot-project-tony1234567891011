@@ -28,12 +28,14 @@ public class Zombie extends Actor
         for(int i = 0; i<animationRight.length; i++)
         {
             animationRight[i] = new GreenfootImage("images/zombie_animation/zombie" + (i) + ".png");
+            animationRight[i].setTransparency(150);
             animationRight[i].scale(animationRight[i].getWidth()*50/100, animationRight[i].getHeight()*50/100);
         }
         for(int i = 0; i<animationLeft.length; i++)
         {
             animationLeft[i] = new GreenfootImage("images/zombie_animation/zombie" + (i) + ".png");
             animationLeft[i].mirrorHorizontally();
+            animationLeft[i].setTransparency(150);
             animationLeft[i].scale(animationLeft[i].getWidth()*50/100, animationLeft[i].getHeight()*50/100);
         }
         setImage(animationRight[0]);

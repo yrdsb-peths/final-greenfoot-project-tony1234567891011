@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameWorld extends World
 {
-    //GreenfootImage bg = new GreenfootImage("map.jpg");
+    
     int killCounter = 0;
     int spawnCount = 20;
     int randomSpawnX;
@@ -25,18 +25,17 @@ public class GameWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200,600,1,false);
-        /*
+        GreenfootImage bg = new GreenfootImage("map.jpg");
         int height = bg.getHeight();
         int resizedHeight = (int)(height*1.5);
         bg.scale(bg.getWidth()*2, resizedHeight);
         setBackground(bg);
-        */
+        
         MC character = new MC();
         Zombie enemy = new Zombie();
-        IndicatorRange x = new IndicatorRange();
+        
         addObject(character, getWidth()/2, getHeight()/2);
         addObject(enemy, 0,300);
-        addObject(x, MC.survivorLocationX, MC.survivorLocationY);
         spawnTimer.mark();
         survivedTime.mark();
     }
@@ -46,6 +45,7 @@ public class GameWorld extends World
         Zombie spawn = new Zombie();
         int randomSpawnGenerator = Greenfoot.getRandomNumber(3);
         // piece of code always makes sure its random, however spawns at the borders.
+        // 4 different possibilities, each for each side of the border
         if(randomSpawnGenerator == 0)
         {
             randomSpawnX = 1200;

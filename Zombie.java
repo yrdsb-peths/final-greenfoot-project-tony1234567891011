@@ -16,7 +16,7 @@ public class Zombie extends Actor
     public static int zombieY;
     int animationCounter = 0;
     int animationSpeed = 20;
-    int mvtSpd = 5;
+    int mvtSpd = 3;
     //200 ms is the default time for the first spawn, will go down.
     GreenfootImage animationLeft[] = new GreenfootImage[8];
     /**
@@ -116,6 +116,12 @@ public class Zombie extends Actor
             }
             EndGameScreen endgame = new EndGameScreen();
             Greenfoot.setWorld(endgame);
+        }
+        Actor bullet = getOneIntersectingObject(Bullet.class); // check if bullet intersects an object
+        if(bullet != null) // if it returns something, remove it from the world
+        {
+            getWorld().removeObject(bullet);
+            getWorld().removeObject(this);
         }
     }
     int index = 0;

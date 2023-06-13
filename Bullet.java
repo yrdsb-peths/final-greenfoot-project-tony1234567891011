@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bullet extends Actor
 {
-    int speed = 10; // bullet speed
+    int speed; // bullet speed
     /**
      * Act - do whatever the bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -17,6 +17,7 @@ public class Bullet extends Actor
     {
         GreenfootImage bulletImage = new GreenfootImage("images/bullet.png");
         setImage(bulletImage);
+        speed = 50;
         bulletImage.scale(bulletImage.getWidth()*50/100, bulletImage.getHeight()*50/100);
         setRotation(rotation);
     }

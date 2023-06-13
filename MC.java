@@ -13,7 +13,9 @@ public class MC extends Actor
     int mouseX, mouseY;
     public static int survivorLocationX, survivorLocationY;
     int frame = 1;
+    int bulletCount = 50;
     public int survivorRotation;
+    
     /**
      * Act - do whatever the MC wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -23,17 +25,19 @@ public class MC extends Actor
         characterImage.scale(characterImage.getWidth()*25/100, characterImage.getHeight()*25/100);
 
     }
-
+    
     public void act()
     {
         // Add your action code here.
         setImage(characterImage);
+        Label bulletNumber = new Label("" + bulletCount, 50);
         survivorRotation = getRotation();
-        
         mouseLocation();
-        shoot();
+        shoot(bulletNumber);
+        
         survivorLocationX = getX();
         survivorLocationY = getY();
+        
         if(Greenfoot.isKeyDown("w"))
         {
             setLocation(getX(), getY()-10);
@@ -52,15 +56,19 @@ public class MC extends Actor
         {
             setLocation(getX()+10, getY());
         }
+        getWorld().removeObject(bulletNumber);
     }
 
-    public void shoot()
+    public void shoot(Label x)
     {
         if(Greenfoot.getMouseInfo() != null)
         {
             if(Greenfoot.getMouseInfo().getButton() == 1)
             {
                 getWorld().addObject(new Bullet(survivorRotation), getX(), getY());
+                
+                getWorld().addObject(x, 1100, 500);
+                bulletCount = bulletCount-1;
             }
         }
     }

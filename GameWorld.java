@@ -11,6 +11,8 @@ public class GameWorld extends World
     //GreenfootImage bg = new GreenfootImage("map.jpg");
     int killCounter = 0;
     int spawnCount = 20;
+    int randomSpawnX;
+    int randomSpawnY;
     SimpleTimer spawnTimer = new SimpleTimer();
     SimpleTimer survivedTime = new SimpleTimer();
     public static int timeSurvived = 0;
@@ -31,8 +33,10 @@ public class GameWorld extends World
         */
         MC character = new MC();
         Zombie enemy = new Zombie();
+        IndicatorRange x = new IndicatorRange();
         addObject(character, getWidth()/2, getHeight()/2);
         addObject(enemy, 0,300);
+        addObject(x, MC.survivorLocationX, MC.survivorLocationY);
         spawnTimer.mark();
         survivedTime.mark();
     }
@@ -40,14 +44,27 @@ public class GameWorld extends World
     public void act()
     {
         Zombie spawn = new Zombie();
-        int randomSpawnX = Greenfoot.getRandomNumber(1200);
-        int randomSpawnY = Greenfoot.getRandomNumber(600);
-        while(randomSpawnX == MC.survivorLocationX && randomSpawnY == MC.survivorLocationY && randomSpawnX == (MC.survivorLocationX + 20) && randomSpawnY == (MC.survivorLocationY+20))
-        // makes sure it does not spawn on the main character or too close 
-        //20 is for the range so the hitbox also does not autoend game.
+        int randomSpawnGenerator = Greenfoot.getRandomNumber(3);
+        // piece of code always makes sure its random, however spawns at the borders.
+        if(randomSpawnGenerator == 0)
+        {
+            randomSpawnX = 1200;
+            randomSpawnY = Greenfoot.getRandomNumber(600);
+        }
+        else if(randomSpawnGenerator == 1)
+        {
+            randomSpawnX = 0;
+            randomSpawnY = Greenfoot.getRandomNumber(600);
+        } 
+        else if(randomSpawnGenerator == 2)
         {
             randomSpawnX = Greenfoot.getRandomNumber(1200);
-            randomSpawnY = Greenfoot.getRandomNumber(600);
+            randomSpawnY = 0;
+        }
+        else if(randomSpawnGenerator == 3)
+        {
+            randomSpawnY = 600;
+            randomSpawnX = Greenfoot.getRandomNumber(1200);
         }
         spawnZombie(spawn, randomSpawnX, randomSpawnY);
         timeSurvived = survivedTime.millisElapsed();

@@ -9,10 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class EndGameScreen extends World
 {
     Label gameOver = new Label("Game Over", 25);
-    int timeMins = (GameWorld.timeSurvived)/60000;
+    int timeMins = (GameWorldLevel1.timeSurvived)/60000;
     public static int retryCount = 0;
-    int timeSeconds = (GameWorld.timeSurvived%60000)/1000;
-    int timeMilliseconds = (GameWorld.timeSurvived%60000)%1000;
+    int timeSeconds = (GameWorldLevel1.timeSurvived%60000)/1000;
+    int timeMilliseconds = (GameWorldLevel1.timeSurvived%60000)%1000;
     int highestScoreMins = Zombie.highestScore/60000;
     int highestScoreSeconds = (Zombie.highestScore%60000)/1000;
     int highestScoreMilliseconds = (Zombie.highestScore%60000)%1000;
@@ -37,7 +37,7 @@ public class EndGameScreen extends World
     {
         if(Greenfoot.isKeyDown("x"))
         {
-            GameWorld retry = new GameWorld();
+            GameWorldLevel1 retry = new GameWorldLevel1();
             retryCount++;
             Greenfoot.setWorld(retry);
         }

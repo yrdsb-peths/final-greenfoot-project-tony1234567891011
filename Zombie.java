@@ -68,7 +68,7 @@ public class Zombie extends Actor
                     }
                 }
             }
-            score[EndGameScreen.retryCount%10] = GameWorld.timeSurvived;
+            score[EndGameScreen.retryCount%10] = GameWorldLevel1.timeSurvived;
             
             for(int i = 0; i<score.length; i++)
             {
@@ -103,7 +103,7 @@ public class Zombie extends Actor
                     }
                 }
             }
-            score[EndGameScreen.retryCount%10] = GameWorld.timeSurvived;
+            score[EndGameScreen.retryCount%10] = GameWorldLevel1.timeSurvived;
             
             for(int i = 0; i<score.length; i++)
             {

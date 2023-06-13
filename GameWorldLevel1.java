@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class GameWorld extends World
+public class GameWorldLevel1 extends World
 {
     
     int killCounter = 0;
@@ -21,7 +21,7 @@ public class GameWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-    public GameWorld()
+    public GameWorldLevel1()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200,600,1,false);

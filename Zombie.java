@@ -11,7 +11,6 @@ public class Zombie extends Actor
     GreenfootImage animationRight[] = new GreenfootImage[8];
     String defaultFacing = "right";
     public int score[] = new int[10];
-    int retryCount = 0;
     public static int highestScore = 0;
     public static int zombieX;
     public static int zombieY;
@@ -39,10 +38,9 @@ public class Zombie extends Actor
         }
         setImage(animationRight[0]);
     }
-    
     public void act()
     {
-        if(animationCounter%animationSpeed==0)
+        if(animationCounter%animationSpeed==0) // puts a delay on each frame, so the animmation does not play too fast.
         {
             animate();
         }
@@ -53,14 +51,67 @@ public class Zombie extends Actor
         if(isTouching(MC.class))
         {
             removeTouching(MC.class);
-            score[retryCount] = GameWorld.timeSurvived;
-            retryCount++;
+            if(EndGameScreen.retryCount == 10) // resets array when it is full
+            // retains highest score, however resets all other values back to 0 so its a infinite array
+            {
+                for(int i = 0; i<score.length; i++) // iterates through the elements of the array.
+                {
+                    if(i==0)
+                    {
+                        score[i] = highestScore;
+                    }
+                    else
+                    {
+                        score[i] = 0;
+                    }
+                }
+            }
+            score[EndGameScreen.retryCount%10] = GameWorld.timeSurvived;
+            
             for(int i = 0; i<score.length; i++)
             {
-                highestScore = score[0];
                 if(highestScore<score[i])
                 {
                     highestScore = score[i];
+                    for(int j = 0; j<score.length; j++) // resets the array so that you can infinitely have a new high score.
+                    {
+                        score[j] = 0;
+                    }
+                }
+            }
+            EndGameScreen endgame = new EndGameScreen();
+            Greenfoot.setWorld(endgame);
+        }
+        else if((MC.survivorLocationX>1200 ||MC.survivorLocationX<0) || (MC.survivorLocationY<0 || MC.survivorLocationY>600))
+        //end game if you touch the boundaries
+        {
+            removeTouching(MC.class);
+            if(EndGameScreen.retryCount%10 == 0) // resets array when it is full
+            // retains highest score, however resets all other values back to 0 so its a infinite array
+            {
+                for(int i = 0; i<score.length; i++)
+                {
+                    if(i==0)
+                    {
+                        score[i] = highestScore;
+                    }
+                    else
+                    {
+                        score[i] = 0;
+                    }
+                }
+            }
+            score[EndGameScreen.retryCount%10] = GameWorld.timeSurvived;
+            
+            for(int i = 0; i<score.length; i++)
+            {
+                if(highestScore<score[i])
+                {
+                    highestScore = score[i];
+                    for(int j = 0; j<score.length; j++) // resets the array so that you can infinitely have a new high score.
+                    {
+                        score[j] = 0;
+                    }
                 }
             }
             EndGameScreen endgame = new EndGameScreen();
@@ -91,19 +142,6 @@ public class Zombie extends Actor
             index = (index+1)%(animationRight.length);
         }
     }
-    /*
-    public void spawnZombie(Zombie z,int x, int y, SimpleTimer spawnTimer, int spawnInMillis)
-    {
-        if(spawnTimer.millisElapsed()<spawnInMillis)
-        {
-            return;
-        }
-        spawnTimer.mark();
-        GameWorld world = (GameWorld) getWorld();
-        world.addObject(z,x,y);
-        spawnInMillis =-1;
-    }
-    */
     public void chaseSurvivor()
     {
       if(MC.survivorLocationX < zombieX && MC.survivorLocationY > zombieY)

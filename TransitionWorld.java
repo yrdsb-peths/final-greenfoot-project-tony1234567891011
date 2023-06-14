@@ -22,7 +22,7 @@ public class TransitionWorld extends World
         
         
     }
-    Label title = new Label("Next Wave, Good luck ", 100);
+    Label title = new Label("Wave " + TransitionWorld.count + ", Good luck ", 100);
     public void act()
     {
         addObject(title, getWidth()/2, getHeight()/2);
@@ -32,17 +32,21 @@ public class TransitionWorld extends World
             if(count == 0)
             {
                 Greenfoot.setWorld(new GameWorldLevel1());
-                count++;
+                count = 1;
             }
             else if(count == 1)
             {
                 Greenfoot.setWorld(new GameWorldLevel2());
-                count++;
+                count = 2;
             }
             else if(count == 2)
             {
                 Greenfoot.setWorld(new GameWorldLevel3());
-                count++;
+                count = 0;
+            }
+            else if(count == 3)
+            {
+                count = 0;
             }
         }
         

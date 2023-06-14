@@ -33,7 +33,15 @@ public class EndGameScreen extends World
     }
     public void act()
     {
-        if(TransitionWorld.count == 2)
+        if(TransitionWorld.count == 3)
+        {
+            int timeMins = (GameWorldLevel3.timeSurvived)/60000;
+            int timeSeconds = (GameWorldLevel3.timeSurvived%60000)/1000;
+            int timeMilliseconds = (GameWorldLevel3.timeSurvived%60000)%1000;  
+            Label timeSurvived = new Label("Time Survived: "+ timeMins + " minutes \n" + timeSeconds + " seconds \n" + timeMilliseconds + " milliseconds.\n", 25);
+            addObject(timeSurvived, getWidth()/2, getHeight()/2+150);
+        }
+        else if(TransitionWorld.count == 2)
         {
             int timeMins = (GameWorldLevel2.timeSurvived)/60000;
             int timeSeconds = (GameWorldLevel2.timeSurvived%60000)/1000;
@@ -49,14 +57,7 @@ public class EndGameScreen extends World
             Label timeSurvived = new Label("Time Survived: "+ timeMins + " minutes \n" + timeSeconds + " seconds \n" + timeMilliseconds + " milliseconds.\n", 25);
             addObject(timeSurvived, getWidth()/2, getHeight()/2+150);
         }
-        else if(TransitionWorld.count == 3)
-        {
-            int timeMins = (GameWorldLevel3.timeSurvived)/60000;
-            int timeSeconds = (GameWorldLevel3.timeSurvived%60000)/1000;
-            int timeMilliseconds = (GameWorldLevel3.timeSurvived%60000)%1000;  
-            Label timeSurvived = new Label("Time Survived: "+ timeMins + " minutes \n" + timeSeconds + " seconds \n" + timeMilliseconds + " milliseconds.\n", 25);
-            addObject(timeSurvived, getWidth()/2, getHeight()/2+150);
-        }
+        
         if(Greenfoot.isKeyDown("x"))
         {
             if(TransitionWorld.count == 2)

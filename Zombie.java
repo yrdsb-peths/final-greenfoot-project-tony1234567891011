@@ -12,7 +12,7 @@ public class Zombie extends Actor
     String defaultFacing = "right";
     public int score[] = new int[10];
     public static int highestScore = 0;
-    public static int waveCount = 20;
+    public static int waveCount = 2;
     public static int zombieX;
     public static int zombieY;
     int animationCounter = 0;
@@ -26,6 +26,18 @@ public class Zombie extends Actor
      */
     public Zombie()
     {
+        if(TransitionWorld.count == 1)
+        {
+            mvtSpd = 3;
+        }
+        else if(TransitionWorld.count == 2)
+        {
+            mvtSpd = 10;
+        }
+        else if(TransitionWorld.count == 3)
+        {
+            mvtSpd = 15;
+        }
         for(int i = 0; i<animationRight.length; i++)
         {
             animationRight[i] = new GreenfootImage("images/zombie_animation/zombie" + (i) + ".png");
@@ -139,10 +151,13 @@ public class Zombie extends Actor
             waveCount = waveCount-1;
             if(waveCount == 0 || waveCount < 0)
             {
-                
+                if(TransitionWorld.count == 3)
+                {
+                    Greenfoot.setWorld(new WinGameScreen());
+                }
                 TransitionWorld nextWorld = new TransitionWorld();
                 Greenfoot.setWorld(nextWorld);
-                waveCount = 20;
+                waveCount = 2;
             }
             getWorld().removeObject(this);
         }

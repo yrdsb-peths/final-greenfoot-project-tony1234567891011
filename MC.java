@@ -13,7 +13,8 @@ public class MC extends Actor
     int mouseX, mouseY;
     public static int survivorLocationX, survivorLocationY;
     int frame = 1;
-    public static int level = 1;
+    // number of zombies left in this level.
+    
     int bulletCount = 50;
     public int survivorRotation;
     

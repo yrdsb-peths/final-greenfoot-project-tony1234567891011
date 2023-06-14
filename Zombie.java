@@ -12,6 +12,7 @@ public class Zombie extends Actor
     String defaultFacing = "right";
     public int score[] = new int[10];
     public static int highestScore = 0;
+    public static int waveCount = 20;
     public static int zombieX;
     public static int zombieY;
     int animationCounter = 0;
@@ -68,12 +69,24 @@ public class Zombie extends Actor
                     }
                 }
             }
-            score[EndGameScreen.retryCount%10] = GameWorldLevel1.timeSurvived;
+            if(TransitionWorld.count == 1)
+            {
+                score[EndGameScreen.retryCount%10] = GameWorldLevel1.timeSurvived;
+            }
+            else if(TransitionWorld.count == 2)
+            {
+                score[EndGameScreen.retryCount%10] = GameWorldLevel2.timeSurvived;
+            }
+            else if(TransitionWorld.count == 3)
+            {
+                score[EndGameScreen.retryCount%10] = GameWorldLevel3.timeSurvived;
+            }
+            
             
             for(int i = 0; i<score.length; i++)
             {
                 if(highestScore<score[i])
-                {
+                { 
                     highestScore = score[i];
                     for(int j = 0; j<score.length; j++) // resets the array so that you can infinitely have a new high score.
                     {
@@ -123,6 +136,14 @@ public class Zombie extends Actor
         if(bullet != null) // if it returns something, remove it from the world
         {
             getWorld().removeObject(bullet);
+            waveCount = waveCount-1;
+            if(waveCount == 0 || waveCount < 0)
+            {
+                
+                TransitionWorld nextWorld = new TransitionWorld();
+                Greenfoot.setWorld(nextWorld);
+                waveCount = 20;
+            }
             getWorld().removeObject(this);
         }
     }

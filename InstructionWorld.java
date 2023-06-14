@@ -51,7 +51,7 @@ public class InstructionWorld extends World
     {
         if(Greenfoot.isKeyDown("x"))
         {
-            GameWorldLevel1 gameworld = new GameWorldLevel1();
+            TransitionWorld gameworld = new TransitionWorld();
             Greenfoot.setWorld(gameworld);
         }
     }

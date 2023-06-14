@@ -1,33 +1,34 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Write a description of class GameWorldLevel2 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class GameWorldLevel1 extends World
+public class GameWorldLevel2 extends World
 {
     int randomSpawnX;
     int randomSpawnY;
-    public static int level = 1;
+    public static int level = GameWorldLevel1.level;
     SimpleTimer spawnTimer = new SimpleTimer();
     SimpleTimer survivedTime = new SimpleTimer();
     public static int timeSurvived = 0;
-    int timePerSpawn = 2000;
+    int timePerSpawn = 1500;
     /**
-     * Constructor for objects of class MyWorld.
+     * Constructor for objects of class GameWorldLevel2.
      * 
      */
-    public GameWorldLevel1()
+    public GameWorldLevel2()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1200,600,1,false);
+        super(1200, 600, 1); 
         GreenfootImage bg = new GreenfootImage("map.jpg");
         int height = bg.getHeight();
         int resizedHeight = (int)(height*1.5);
         bg.scale(bg.getWidth()*2, resizedHeight);
         setBackground(bg);
+        showText("2", 100,150);
         
         MC character = new MC();
         Zombie enemy = new Zombie();
@@ -37,7 +38,6 @@ public class GameWorldLevel1 extends World
         spawnTimer.mark();
         survivedTime.mark();
     }
-    
     public void act()
     {
         Zombie spawn = new Zombie();

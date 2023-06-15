@@ -10,7 +10,9 @@ public class Zombie extends Actor
 {
     GreenfootImage animationRight[] = new GreenfootImage[8];
     String defaultFacing = "right";
+    GreenfootSound killSound = new GreenfootSound("elephantcub.mp3");
     public int score[] = new int[10];
+    public static int deathCount = 0;
     public static int highestScore = 0;
     public static int waveCount = 2;
     public static int zombieX;
@@ -26,18 +28,6 @@ public class Zombie extends Actor
      */
     public Zombie()
     {
-        if(TransitionWorld.count == 1)
-        {
-            mvtSpd = 3;
-        }
-        else if(TransitionWorld.count == 2)
-        {
-            mvtSpd = 10;
-        }
-        else if(TransitionWorld.count == 3)
-        {
-            mvtSpd = 15;
-        }
         for(int i = 0; i<animationRight.length; i++)
         {
             animationRight[i] = new GreenfootImage("images/zombie_animation/zombie" + (i) + ".png");
@@ -59,6 +49,18 @@ public class Zombie extends Actor
         {
             animate();
         }
+        if(TransitionWorld.count == 1)
+        {
+            mvtSpd = Greenfoot.getRandomNumber(3)+3;
+        }
+        else if(TransitionWorld.count == 2)
+        {
+            mvtSpd = Greenfoot.getRandomNumber(3)+7;
+        }
+        else if(TransitionWorld.count == 3)
+        {
+            mvtSpd = Greenfoot.getRandomNumber(7)+7;
+        }
         animationCounter++;
         zombieX = getX();
         zombieY = getY();
@@ -66,6 +68,7 @@ public class Zombie extends Actor
         if(isTouching(MC.class))
         {
             removeTouching(MC.class);
+            deathCount++;
             if(EndGameScreen.retryCount == 10) // resets array when it is full
             // retains highest score, however resets all other values back to 0 so its a infinite array
             {
@@ -148,16 +151,22 @@ public class Zombie extends Actor
         if(bullet != null) // if it returns something, remove it from the world
         {
             getWorld().removeObject(bullet);
+            killSound.play();
             waveCount = waveCount-1;
             if(waveCount == 0 || waveCount < 0)
             {
                 if(TransitionWorld.count == 3)
                 {
                     Greenfoot.setWorld(new WinGameScreen());
+                    waveCount = Greenfoot.getRandomNumber(40)+10;
                 }
-                TransitionWorld nextWorld = new TransitionWorld();
-                Greenfoot.setWorld(nextWorld);
-                waveCount = 2;
+                else 
+                {
+                   TransitionWorld nextWorld = new TransitionWorld();
+                    Greenfoot.setWorld(nextWorld);
+                    waveCount = Greenfoot.getRandomNumber(40)+10;
+                    
+                }
             }
             getWorld().removeObject(this);
         }

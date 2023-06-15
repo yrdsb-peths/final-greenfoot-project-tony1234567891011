@@ -9,8 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TitleScreen extends World
 {
     Label titleLabel = new Label("Survival game",50);
-    
-    
     /**
      * Constructor for objects of class TitleScreen.
      * 

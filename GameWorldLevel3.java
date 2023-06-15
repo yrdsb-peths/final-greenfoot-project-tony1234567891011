@@ -11,10 +11,10 @@ public class GameWorldLevel3 extends World
 {
     int randomSpawnX;
     int randomSpawnY;
-    public static int level = GameWorldLevel1.level;
     SimpleTimer spawnTimer = new SimpleTimer();
     SimpleTimer survivedTime = new SimpleTimer();
     public static int timeSurvived = 0;
+    public static int wave3Score = GameWorldLevel2.wave2Score;
     int timePerSpawn = 1000;
     /**
      * Constructor for objects of class GameWorldlevel3.
@@ -29,7 +29,7 @@ public class GameWorldLevel3 extends World
         int resizedHeight = (int)(height*1.5);
         bg.scale(bg.getWidth()*2, resizedHeight);
         setBackground(bg);
-        showText("3", 100,150);
+        showText("Level 3", 100,150);
         
         MC character = new MC();
         Zombie enemy = new Zombie();
@@ -44,6 +44,7 @@ public class GameWorldLevel3 extends World
         Zombie spawn = new Zombie();
         showText("Zombies Left: " + Zombie.waveCount, 100,55);
         int randomSpawnGenerator = Greenfoot.getRandomNumber(3);
+        showText("Score: " + wave3Score, getWidth()/2, getHeight()/5);
         // piece of code always makes sure its random, however spawns at the borders.
         // 4 different possibilities, each for each side of the border
         if(randomSpawnGenerator == 0)
@@ -66,6 +67,7 @@ public class GameWorldLevel3 extends World
             randomSpawnY = 600;
             randomSpawnX = Greenfoot.getRandomNumber(1200);
         }
+        wave3Score++;
         spawnZombie(spawn, randomSpawnX, randomSpawnY);
         timeSurvived = survivedTime.millisElapsed();
     }
@@ -78,7 +80,7 @@ public class GameWorldLevel3 extends World
         else
         {
             spawnTimer.mark();
-            timePerSpawn= timePerSpawn-1;
+            timePerSpawn = timePerSpawn-15;
             addObject(z,x,y);
         }
     }

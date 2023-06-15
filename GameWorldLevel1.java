@@ -10,10 +10,10 @@ public class GameWorldLevel1 extends World
 {
     int randomSpawnX;
     int randomSpawnY;
-    public static int level = 1;
     SimpleTimer spawnTimer = new SimpleTimer();
     SimpleTimer survivedTime = new SimpleTimer();
     public static int timeSurvived = 0;
+    public static int score;
     int timePerSpawn = 2000;
     /**
      * Constructor for objects of class MyWorld.
@@ -28,7 +28,7 @@ public class GameWorldLevel1 extends World
         int resizedHeight = (int)(height*1.5);
         bg.scale(bg.getWidth()*2, resizedHeight);
         setBackground(bg);
-        
+        showText("Level 1", 100,150);
         MC character = new MC();
         Zombie enemy = new Zombie();
         
@@ -43,6 +43,7 @@ public class GameWorldLevel1 extends World
         Zombie spawn = new Zombie();
         showText("Zombies Left: " + Zombie.waveCount, 100,55);
         int randomSpawnGenerator = Greenfoot.getRandomNumber(3);
+        showText("Score:" + score, getWidth()/2, getHeight()/5);
         // piece of code always makes sure its random, however spawns at the borders.
         // 4 different possibilities, each for each side of the border
         if(randomSpawnGenerator == 0)
@@ -65,7 +66,12 @@ public class GameWorldLevel1 extends World
             randomSpawnY = 600;
             randomSpawnX = Greenfoot.getRandomNumber(1200);
         }
+        if(Greenfoot.isKeyDown("space"))
+        {
+            Greenfoot.stop();
+        }
         spawnZombie(spawn, randomSpawnX, randomSpawnY);
+        score = score+1;
         timeSurvived = survivedTime.millisElapsed();
     }
     public void spawnZombie(Zombie z, int x, int y)
@@ -77,7 +83,7 @@ public class GameWorldLevel1 extends World
         else
         {
             spawnTimer.mark();
-            timePerSpawn= timePerSpawn-1;
+            timePerSpawn = timePerSpawn-10;
             addObject(z,x,y);
         }
     }

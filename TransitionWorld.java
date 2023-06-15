@@ -10,6 +10,7 @@ public class TransitionWorld extends World
 {
     SimpleTimer delayTimer = new SimpleTimer();
     public static int count = 0;
+    int oldRetryCount = 0;
     /**
      * Constructor for objects of class transition.
      * 
@@ -21,32 +22,43 @@ public class TransitionWorld extends World
         delayTimer.mark();
         
         
-    }
-    Label title = new Label("Wave " + TransitionWorld.count + ", Good luck ", 100);
-    public void act()
-    {
+        Label title = new Label("New Wave " + ", \nGood luck ", 100);
         addObject(title, getWidth()/2, getHeight()/2);
         title.setFillColor(Color.RED);
+        
+    }
+    
+    public void act()
+    {
         if(delayTimer.millisElapsed()>2000)
         {
             if(count == 0)
             {
-                Greenfoot.setWorld(new GameWorldLevel1());
                 count = 1;
             }
             else if(count == 1)
             {
-                Greenfoot.setWorld(new GameWorldLevel2());
                 count = 2;
             }
             else if(count == 2)
             {
-                Greenfoot.setWorld(new GameWorldLevel3());
-                count = 0;
+                count = 3;
             }
             else if(count == 3)
             {
-                count = 0;
+                count = 1;
+            }
+            if(count == 1)
+            {
+                Greenfoot.setWorld(new GameWorldLevel1());
+            }
+            else if(count == 2)
+            {
+                Greenfoot.setWorld(new GameWorldLevel2());
+            }
+            else if(count == 3)
+            {
+                Greenfoot.setWorld(new GameWorldLevel3());
             }
         }
         

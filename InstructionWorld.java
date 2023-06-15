@@ -9,9 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class InstructionWorld extends World
 {
     Label title = new Label("Rules:",50);
-    Label rule1 = new Label("- Movement:WASD, Up, Left, Down, Right respectively.",25);
-    Label rule2 = new Label("Press space to shoot the enemies in front of you.",25);
-    Label rule3 = new Label("-Survive without dying and kill all your foes.", 25);
+    Label rule1 = new Label("- Movement:WASD for Up, Left, Down, Right respectively.",25);
+    Label rule2 = new Label("Press LEFT MOUSE Click to shoot the enemies in front of you.",25);
+    Label rule3 = new Label("-Kill your foes without dying as much as possible.\n Each death loses score.", 25);
     int textSpacing = 75;
     Label proceed = new Label("Press <  the key X  > to start playing the game.",25);
     /**
@@ -23,10 +23,14 @@ public class InstructionWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         
         super(600, 400, 1);
-        //GreenfootImage bg = new GreenfootImage("instructionScreenBg.jpg");
-        //setBackground(bg);
-        //bg.setTransparency(10);
-        //bg.scale(bg.getWidth()*25/100, bg.getHeight()*25/100);
+        ZombieImage image = new ZombieImage();
+        
+        addObject(image, 450,335);
+        
+        KeyboardControlImage keyImage = new KeyboardControlImage();
+        addObject(keyImage,250,170);
+        MouseControlImage mouseImage = new MouseControlImage();
+        addObject(mouseImage, 250, 255);
         Color outline = Color.WHITE;
         outline = outline.darker();
         Color firstRule = Color.GREEN;

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * This is the first level after the instructions screen, the first level that you play.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tony Lin 
+ * @June 14, 2023
  */
 public class GameWorldLevel1 extends World
 {
@@ -16,8 +16,9 @@ public class GameWorldLevel1 extends World
     public static int score;
     int timePerSpawn = 2000;
     /**
-     * Constructor for objects of class MyWorld.
-     * 
+     * This constructor contains the background with the scaling to make sure it fits perfectly.
+     * This constructor creates a main character(MC) and a starting Zombie and places it in the world.
+     * This constructor also starts the timer for when the MC is still alive, and the timer for each spawn(timePerSpawn in milliseconds)
      */
     public GameWorldLevel1()
     {    
@@ -37,7 +38,13 @@ public class GameWorldLevel1 extends World
         spawnTimer.mark();
         survivedTime.mark();
     }
-    
+    /**
+     * This method creates a new Zombie instance in the world randomly spawned, however will always spawn at the world border.
+     * The random coordinates will be kept track through the variables randomSpawnX and randomSpawnY.
+     * This method also keeps track of the surviving main character(MC) through the variable timeSurvived.
+     * It also starts the scoring, by giving 1 per milliseconds survived.
+     * This method displays the current score(in the middle), amount of zombies left for this level(on the top left).
+     */
     public void act()
     {
         Zombie spawn = new Zombie();
@@ -66,14 +73,15 @@ public class GameWorldLevel1 extends World
             randomSpawnY = 600;
             randomSpawnX = Greenfoot.getRandomNumber(1200);
         }
-        if(Greenfoot.isKeyDown("space"))
-        {
-            Greenfoot.stop();
-        }
         spawnZombie(spawn, randomSpawnX, randomSpawnY);
         score = score+1;
         timeSurvived = survivedTime.millisElapsed();
     }
+    /**
+     * This method allows us to add the zombies class to the world at a certain rate(starts at 2000 milliseconds)
+     * This method decreases the time per zombie spawned, by 10 milliseconds each zombie spawned for level 1.
+     * It takes in 3 paramaters, the zombie, and the coordinates that it will be spawned in.
+     */
     public void spawnZombie(Zombie z, int x, int y)
     {
         if(spawnTimer.millisElapsed() < timePerSpawn)

@@ -1,17 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TitleScreen here.
+ * This is the titlescreen, where the type of game is introduced to you.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tony Lin 
+ * @June 14, 2023
  */
 public class TitleScreen extends World
 {
     Label titleLabel = new Label("Survival game",50);
     /**
-     * Constructor for objects of class TitleScreen.
-     * 
+     * This constructor is for the titlescreen.
+     * The type of game is displayed, "Survival Game" in the centre.
+     * A label is included to help players continue to the instructions screen.
      */
     public TitleScreen()
     {    
@@ -27,8 +28,7 @@ public class TitleScreen extends World
         prepare();
     }
     /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
+     * This method sets the label that helps the player continue to the instructions screen on how to play.
      */
     private void prepare()
     {
@@ -38,6 +38,9 @@ public class TitleScreen extends World
         label.setLineColor(fontColor);
         addObject(label,306,273);
     }
+    /**
+     * This method sets the player to the instructions screen after pressing the space bar.
+     */
     public void act()
     {
         if(Greenfoot.isKeyDown("space"))
@@ -45,6 +48,5 @@ public class TitleScreen extends World
             InstructionWorld instructions = new InstructionWorld();
             Greenfoot.setWorld(instructions);
         }
-        
     }
 }

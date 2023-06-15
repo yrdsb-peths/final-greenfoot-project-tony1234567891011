@@ -1,16 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class KeyboardControlImage here.
+ * This is the greenfoot image of the keyboard W A S D keys displayed on the screen in the instructions world.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tony Lin
+ * @June 14, 2023
  */
 public class KeyboardControlImage extends MC
 {
     /**
-     * Act - do whatever the KeyboardControlImage wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * This constructor sets the greenfoot image for this subclass
+     * It scales it as necessary, as it is an oversized image.
      */
     public KeyboardControlImage()
     {

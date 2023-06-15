@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class InstructionWorld here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * This world tells the details of the game, and gives a brief description to how to play the game.
+ * Gives a small tip on how to get the highest achievement.
+ * @Tony Lin
+ * @June 14, 2023
  */
 public class InstructionWorld extends World
 {
@@ -15,8 +15,9 @@ public class InstructionWorld extends World
     int textSpacing = 75;
     Label proceed = new Label("Press <  the key X  > to start playing the game.",25);
     /**
-     * Constructor for objects of class InstructionWorld.
-     * 
+     * This constructor displays all of the labels containing information of the rules to win the game.
+     * This constructor also displays the images from the subclasses of MC and Zombie(ex. ZombieImage) containing how the mob looks like.
+     * This constructor also adds color to the labels shown in the screen.
      */
     public InstructionWorld()
     {    
@@ -51,6 +52,9 @@ public class InstructionWorld extends World
         proceed.setFillColor(Color.YELLOW);
         proceed.setLineColor(Color.BLACK);
     }
+    /**
+     * This method allows the player to continue the game after reading instructions, by pressing the key X.
+     */
     public void act()
     {
         if(Greenfoot.isKeyDown("x"))

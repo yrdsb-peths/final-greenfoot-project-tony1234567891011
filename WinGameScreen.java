@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class WinGameScreen here.
+ * This is the screen that displays the results and the achievement you earned based off your score after beating level 3.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tony Lin
+ * @June 14, 2023
  */
 public class WinGameScreen extends World
 {
@@ -18,8 +18,8 @@ public class WinGameScreen extends World
     Label tips2 = new Label("Tips: \n try staying in \nthe center so \n you can get the\nmost amount of points.", 30);
     int finalScore = GameWorldLevel3.wave3Score - 500*Zombie.deathCount;
     /**
-     * Constructor for objects of class WinGameScreen.
-     * 
+     * This is the constructor for the game winning screen.
+     * It creates a world 600x400.
      */
     public WinGameScreen()
     {    
@@ -28,6 +28,14 @@ public class WinGameScreen extends World
         
         
     }
+    /**
+     * This method sets the images corresponding to the final score after difficulty 3(beating difficulty 3 completes the game.)
+     * This method displays the current score you have, and the longest time you survived for. 
+     * If you did not score higher then 1000, it displays the image and includes a label to help you get a higher score.
+     * If you scored higher but less then 3000, it displays the corresponding image and another label as a tip to get a higher score.
+     * If you scored 3000+, it displays the corresponding image that you won the highest of honor.
+     * This method also allows the ability to continue back to level 1 immediately by pressing Key X on the keyboard.
+     */
     public void act()
     {
         if(finalScore< 1000)
@@ -42,7 +50,7 @@ public class WinGameScreen extends World
             addObject(label,300,80);
             addObject(tips2,451,174);
         }
-        else if(finalScore > 1000)
+        else if(finalScore > 1000 && finalScore< 3000)
         {
             showText("You Win! \n Click Reset to play again~!", getWidth()/2, 25);
             showText("Score Reached: " + finalScore, getWidth()/4-10, 200);

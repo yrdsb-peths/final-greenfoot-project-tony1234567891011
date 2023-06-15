@@ -1,19 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class transition here.
+ * This is the world that helps players prepare for the next difficulty.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tony Lin 
+ * @June 14, 2023
  */
 public class TransitionWorld extends World
 {
     SimpleTimer delayTimer = new SimpleTimer();
     public static int count = 0;
-    int oldRetryCount = 0;
     /**
-     * Constructor for objects of class transition.
-     * 
+     * This is the constructor for the world in between the completion of each level.
+     * It displays labels to warn them they are moving to the next difficulty. 
      */
     public TransitionWorld()
     {    
@@ -27,7 +26,11 @@ public class TransitionWorld extends World
         title.setFillColor(Color.RED);
         
     }
-    
+    /**
+     * This method allows the players to continue to the next level chronologically. (ex level 1-> 2, level 2 -> 3)
+     * This method includes a timer to allow players to prepare.
+     * This method also utilizes a variable that keeps track of the current world/difficulty level and that is accessible from the other actors and methods in order to create functionality.
+     */
     public void act()
     {
         if(delayTimer.millisElapsed()>2000)
@@ -61,6 +64,5 @@ public class TransitionWorld extends World
                 Greenfoot.setWorld(new GameWorldLevel3());
             }
         }
-        
     }
 }

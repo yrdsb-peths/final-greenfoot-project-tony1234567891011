@@ -1,16 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ZombieImage here.
+ * This is the greenfoot image for the zombie in the instructions screen.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tony Lin 
+ * @June 14, 2023
  */
 public class ZombieImage extends Zombie
 {
     /**
-     * Act - do whatever the ZombieImage wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * This constructor is for the greenfoot image of the zombie and sets it to the actor.
+     * It also resizes the image as it is an oversized image.
      */
     public ZombieImage()
     {

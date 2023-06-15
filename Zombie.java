@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class enemy here.
+ * This is the class of the mobs that is chasing the main character.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Tony Lin
+ * @June 14,2023
  */
 public class Zombie extends Actor
 {
@@ -23,8 +23,8 @@ public class Zombie extends Actor
     //200 ms is the default time for the first spawn, will go down.
     GreenfootImage animationLeft[] = new GreenfootImage[8];
     /**
-     * Act - do whatever the enemy wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * This constructor creates an animation for the mob, and for both directions.
+     * It set to face right by default.
      */
     public Zombie()
     {
@@ -43,6 +43,18 @@ public class Zombie extends Actor
         }
         setImage(animationRight[0]);
     }
+    /**
+     * This method manages the animation of the zombie, as it is extremely fast. Every 20 counts, it moves to the next frame.
+     * This method manages the speed of the zombie off the world it is in, and generates a random speed for its movement.
+     * It uses the method 'chaseSurvivor()' to automatically home the MC, chase after him.
+     * This method contains the ability to kill the player if it touches it, sending the player to EndGameScreen.
+     * After killing the player, it records the time that the player survived for, and after recording 10 times it saves the highest and resets the other values of the array score to 0.
+     * Based off the accessible static variable in 'TransitionWorld', it takes the information of what world the player is playing in and records the information of the time elapsed of the MC in the array score.
+     * The zombie tracks the MC's position and if its off the world, also automatically 'kills' the player and sends him to EndGameScreen, also recording the time survived in the array Score.
+     * It also resets the array if the number of non-zero values reaches 10(it recorded the timeSurvived 10 times).
+     * This method also contains the ability for a zombie to die, after a bullet hits or intersects him, it removes both the bullet from the world and the zombie, while also playing a sound.
+     * After a number of zombies die, it sends you to 'TransitionWorld' and brings you to the next world chronologically.
+     */
     public void act()
     {
         if(animationCounter%animationSpeed==0) // puts a delay on each frame, so the animmation does not play too fast.
@@ -172,6 +184,9 @@ public class Zombie extends Actor
         }
     }
     int index = 0;
+    /**
+     * This method is a getter method, for the position of the X and Y coordinates of the zombie.
+     */
     public int getXCoord()
     {
         zombieX = getX();
@@ -182,6 +197,10 @@ public class Zombie extends Actor
         zombieY = getY();
         return zombieY;
     }
+    /**
+     * This method creates the animation, iterating through each animation image
+     * This method also displays the separate series of animation based off the direction of the zombie(left or right)
+     */
     public void animate()
     {
         if(defaultFacing.equals("right"))
@@ -195,6 +214,9 @@ public class Zombie extends Actor
             index = (index+1)%(animationRight.length);
         }
     }
+    /**
+     * This method locates the survivor's position, then chases the survivor, and changes the direction including the animation based off MC's position relative to the zombie
+     */
     public void chaseSurvivor()
     {
       if(MC.survivorLocationX < zombieX && MC.survivorLocationY > zombieY)
